@@ -1,15 +1,3 @@
-/*
-	Copyright (c) 2004-2011, The Dojo Foundation All Rights Reserved.
-	Available via Academic Free License >= 2.1 OR the modified BSD license.
-	see: http://dojotoolkit.org/license for details
-*/
-
-/*
-	This is an optimized version of Dojo, built for deployment and not for
-	development. To get sources and documentation, please visit:
-
-		http://dojotoolkit.org
-*/
 
 (function(
 	userConfig,
@@ -1968,53 +1956,9 @@
 		req.boot && req.apply(null, req.boot);
 	}
 })
-(this.dojoConfig || this.djConfig || this.require || {}, {
-		async:0,
-		baseUrl:"./_",
-		hasCache:{
-				'config-selectorEngine':"lite",
-				'config-tlmSiblingOfDojo':1,
-				'dojo-built':1,
-				'dojo-loader':1,
-				dom:1,
-				'host-browser':1
-		},
-		packages:[
-				{
-					 location:".",
-					 name:"dojo"
-				},
-				{
-					 location:"../dgrid",
-					 main:"OnDemandGrid",
-					 name:"dgrid"
-				},
-				{
-					 location:"../xstyle",
-					 name:"xstyle"
-				},
-				{
-					 location:"../put-selector",
-					 main:"put",
-					 name:"put-selector"
-				},
-				{
-					 location:"../lib",
-					 name:"lib"
-				},
-				{
-					 location:"../dstore",
-					 main:"Store",
-					 name:"dstore"
-				},
-				{
-					 location:"../util/doh",
-					 name:"doh"
-				}
-		]
-});require({cache:{
-'dojo/main':function(){
-define([
+
+
+define("dojo/main", [
 	"./_base/kernel",	// kernel.isAsync
 	"./has",
 	"require",
@@ -2067,9 +2011,8 @@ define([
 	return kernel;
 });
 
-},
-'dojo/_base/kernel':function(){
-define(["../has", "./config", "require", "module"], function(has, config, require, module){
+
+define("dojo/_base/kernel", ["../has", "./config", "require", "module"], function(has, config, require, module){
 	// module:
 	//		dojo/_base/kernel
 
@@ -2370,9 +2313,8 @@ define(["../has", "./config", "require", "module"], function(has, config, requir
 	return dojo;
 });
 
-},
-'dojo/has':function(){
-define(["require", "module"], function(require, module){
+
+define("dojo/has", ["require", "module"], function(require, module){
 	// module:
 	//		dojo/has
 	// summary:
@@ -2390,7 +2332,7 @@ define(["require", "module"], function(require, module){
 	// if using a foreign loader, then the has cache may be initialized via the config object for this module
 	// WARNING: if a foreign loader defines require.has to be something other than the has.js API, then this implementation fail
 	var has = require.has || function(){};
-	if(! 1 ){
+	if(! 0 ){
 		var
 			isBrowser =
 				// the most fundamental decision: are we in the browser?
@@ -2560,9 +2502,8 @@ define(["require", "module"], function(require, module){
 	return has;
 });
 
-},
-'dojo/_base/config':function(){
-define(["../has", "require"], function(has, require){
+
+define("dojo/_base/config", ["../has", "require"], function(has, require){
 	// module:
 	//		dojo/_base/config
 
@@ -2760,9 +2701,8 @@ return {
 });
 
 
-},
-'dojo/sniff':function(){
-define(["./has"], function(has){
+
+define("dojo/sniff", ["./has"], function(has){
 	// module:
 	//		dojo/sniff
 
@@ -2844,9 +2784,8 @@ define(["./has"], function(has){
 	return has;
 });
 
-},
-'dojo/_base/lang':function(){
-define(["./kernel", "../has", "../sniff"], function(dojo, has){
+
+define("dojo/_base/lang", ["./kernel", "../has", "../sniff"], function(dojo, has){
 	// module:
 	//		dojo/_base/lang
 
@@ -3463,9 +3402,8 @@ define(["./kernel", "../has", "../sniff"], function(dojo, has){
 });
 
 
-},
-'dojo/_base/array':function(){
-define(["./kernel", "../has", "./lang"], function(dojo, has, lang){
+
+define("dojo/_base/array", ["./kernel", "../has", "./lang"], function(dojo, has, lang){
 	// module:
 	//		dojo/_base/array
 
@@ -3816,9 +3754,8 @@ define(["./kernel", "../has", "./lang"], function(dojo, has, lang){
 	return array;
 });
 
-},
-'dojo/ready':function(){
-define(["./_base/kernel", "./has", "require", "./domReady", "./_base/lang"], function(dojo, has, require, domReady, lang){
+
+define("dojo/ready", ["./_base/kernel", "./has", "require", "./domReady", "./_base/lang"], function(dojo, has, require, domReady, lang){
 	// module:
 	//		dojo/ready
 	// note:
@@ -3972,9 +3909,8 @@ define(["./_base/kernel", "./has", "require", "./domReady", "./_base/lang"], fun
 	return ready;
 });
 
-},
-'dojo/domReady':function(){
-define(['./has'], function(has){
+
+define("dojo/domReady", ['./has'], function(has){
 	var global = (function () { return this; })(),
 		doc = document,
 		readyStates = { 'loaded': 1, 'complete': 1 },
@@ -4099,9 +4035,8 @@ define(['./has'], function(has){
 	return domReady;
 });
 
-},
-'dojo/_base/declare':function(){
-define(["./kernel", "../has", "./lang"], function(dojo, has, lang){
+
+define("dojo/_base/declare", ["./kernel", "../has", "./lang"], function(dojo, has, lang){
 	// module:
 	//		dojo/_base/declare
 
@@ -5200,9 +5135,8 @@ define(["./kernel", "../has", "./lang"], function(dojo, has, lang){
 	return declare;
 });
 
-},
-'dojo/_base/connect':function(){
-define(["./kernel", "../on", "../topic", "../aspect", "./event", "../mouse", "./sniff", "./lang", "../keys"], function(dojo, on, hub, aspect, eventModule, mouse, has, lang){
+
+define("dojo/_base/connect", ["./kernel", "../on", "../topic", "../aspect", "./event", "../mouse", "./sniff", "./lang", "../keys"], function(dojo, on, hub, aspect, eventModule, mouse, has, lang){
 // module:
 //		dojo/_base/connect
 
@@ -5577,9 +5511,8 @@ return connect;
 
 
 
-},
-'dojo/on':function(){
-define(["./has!dom-addeventlistener?:./aspect", "./_base/kernel", "./sniff"], function(aspect, dojo, has){
+
+define("dojo/on", ["./has!dom-addeventlistener?:./aspect", "./_base/kernel", "./sniff"], function(aspect, dojo, has){
 
 	"use strict";
 	if( 1 ){ // check to make sure we are in a browser, this module should work anywhere
@@ -6173,9 +6106,8 @@ define(["./has!dom-addeventlistener?:./aspect", "./_base/kernel", "./sniff"], fu
 	return on;
 });
 
-},
-'dojo/topic':function(){
-define(["./Evented"], function(Evented){
+
+define("dojo/topic", ["./Evented"], function(Evented){
 
 	// module:
 	//		dojo/topic
@@ -6214,9 +6146,8 @@ define(["./Evented"], function(Evented){
 	};
 });
 
-},
-'dojo/Evented':function(){
-define(["./aspect", "./on"], function(aspect, on){
+
+define("dojo/Evented", ["./aspect", "./on"], function(aspect, on){
 	// module:
 	//		dojo/Evented
 
@@ -6253,9 +6184,8 @@ define(["./aspect", "./on"], function(aspect, on){
 	return Evented;
 });
 
-},
-'dojo/aspect':function(){
-define([], function(){
+
+define("dojo/aspect", [], function(){
 
 	// module:
 	//		dojo/aspect
@@ -6479,9 +6409,8 @@ define([], function(){
 	};
 });
 
-},
-'dojo/_base/event':function(){
-define(["./kernel", "../on", "../has", "../dom-geometry"], function(dojo, on, has, dom){
+
+define("dojo/_base/event", ["./kernel", "../on", "../has", "../dom-geometry"], function(dojo, on, has, dom){
 	// module:
 	//		dojo/_base/event
 
@@ -6541,9 +6470,8 @@ define(["./kernel", "../on", "../has", "../dom-geometry"], function(dojo, on, ha
 	return ret;
 });
 
-},
-'dojo/dom-geometry':function(){
-define(["./sniff", "./_base/window","./dom", "./dom-style"],
+
+define("dojo/dom-geometry", ["./sniff", "./_base/window","./dom", "./dom-style"],
 		function(has, win, dom, style){
 	// module:
 	//		dojo/dom-geometry
@@ -7149,9 +7077,8 @@ define(["./sniff", "./_base/window","./dom", "./dom-style"],
 	return geom;
 });
 
-},
-'dojo/_base/window':function(){
-define(["./kernel", "./lang", "../sniff"], function(dojo, lang, has){
+
+define("dojo/_base/window", ["./kernel", "./lang", "../sniff"], function(dojo, lang, has){
 // module:
 //		dojo/_base/window
 
@@ -7286,9 +7213,8 @@ return ret;
 
 });
 
-},
-'dojo/dom':function(){
-define(["./sniff", "./_base/window"],
+
+define("dojo/dom", ["./sniff", "./_base/window"],
 		function(has, win){
 	// module:
 	//		dojo/dom
@@ -7491,9 +7417,8 @@ define(["./sniff", "./_base/window"],
 	return dom;
 });
 
-},
-'dojo/dom-style':function(){
-define(["./sniff", "./dom"], function(has, dom){
+
+define("dojo/dom-style", ["./sniff", "./dom"], function(has, dom){
 	// module:
 	//		dojo/dom-style
 
@@ -7823,9 +7748,8 @@ define(["./sniff", "./dom"], function(has, dom){
 	return style;
 });
 
-},
-'dojo/mouse':function(){
-define(["./_base/kernel", "./on", "./has", "./dom", "./_base/window"], function(dojo, on, has, dom, win){
+
+define("dojo/mouse", ["./_base/kernel", "./on", "./has", "./dom", "./_base/window"], function(dojo, on, has, dom, win){
 
 	// module:
 	//		dojo/mouse
@@ -7997,9 +7921,8 @@ define(["./_base/kernel", "./on", "./has", "./dom", "./_base/window"], function(
 	};
 });
 
-},
-'dojo/_base/sniff':function(){
-define(["./kernel", "./lang", "../sniff"], function(dojo, lang, has){
+
+define("dojo/_base/sniff", ["./kernel", "./lang", "../sniff"], function(dojo, lang, has){
 	// module:
 	//		dojo/_base/sniff
 
@@ -8093,9 +8016,8 @@ define(["./kernel", "./lang", "../sniff"], function(dojo, lang, has){
 	return has;
 });
 
-},
-'dojo/keys':function(){
-define(["./_base/kernel", "./sniff"], function(dojo, has){
+
+define("dojo/keys", ["./_base/kernel", "./sniff"], function(dojo, has){
 
 	// module:
 	//		dojo/keys
@@ -8173,9 +8095,8 @@ define(["./_base/kernel", "./sniff"], function(dojo, has){
 	};
 });
 
-},
-'dojo/_base/Deferred':function(){
-define([
+
+define("dojo/_base/Deferred", [
 	"./kernel",
 	"../Deferred",
 	"../promise/Promise",
@@ -8559,9 +8480,8 @@ define([
 	return Deferred;
 });
 
-},
-'dojo/Deferred':function(){
-define([
+
+define("dojo/Deferred", [
 	"./has",
 	"./_base/lang",
 	"./errors/CancelError",
@@ -8882,9 +8802,8 @@ define([
 	return Deferred;
 });
 
-},
-'dojo/errors/CancelError':function(){
-define(["./create"], function(create){
+
+define("dojo/errors/CancelError", ["./create"], function(create){
 	// module:
 	//		dojo/errors/CancelError
 
@@ -8898,9 +8817,8 @@ define(["./create"], function(create){
 	return create("CancelError", null, null, { dojoType: "cancel" });
 });
 
-},
-'dojo/errors/create':function(){
-define(["../_base/lang"], function(lang){
+
+define("dojo/errors/create", ["../_base/lang"], function(lang){
 	return function(name, ctor, base, props){
 		base = base || Error;
 
@@ -8942,9 +8860,8 @@ define(["../_base/lang"], function(lang){
 	};
 });
 
-},
-'dojo/promise/Promise':function(){
-define([
+
+define("dojo/promise/Promise", [
 	"../_base/lang"
 ], function(lang){
 	"use strict";
@@ -9078,9 +8995,8 @@ define([
 	});
 });
 
-},
-'dojo/promise/instrumentation':function(){
-define([
+
+define("dojo/promise/instrumentation", [
 	"./tracer",
 	"../has",
 	"../_base/lang",
@@ -9197,9 +9113,8 @@ define([
 	};
 });
 
-},
-'dojo/promise/tracer':function(){
-define([
+
+define("dojo/promise/tracer", [
 	"../_base/lang",
 	"./Promise",
 	"../Evented"
@@ -9285,9 +9200,8 @@ define([
 	return evented;
 });
 
-},
-'dojo/when':function(){
-define([
+
+define("dojo/when", [
 	"./Deferred",
 	"./promise/Promise"
 ], function(Deferred, Promise){
@@ -9343,9 +9257,8 @@ define([
 	};
 });
 
-},
-'dojo/_base/json':function(){
-define(["./kernel", "../json"], function(dojo, json){
+
+define("dojo/_base/json", ["./kernel", "../json"], function(dojo, json){
 
 // module:
 //		dojo/_base/json
@@ -9437,9 +9350,8 @@ dojo.toJson = function(/*Object*/ it, /*Boolean?*/ prettyPrint){
 return dojo;
 });
 
-},
-'dojo/json':function(){
-define(["./has"], function(has){
+
+define("dojo/json", ["./has"], function(has){
 	"use strict";
 	var hasJSON = typeof JSON != "undefined";
 	has.add("json-parse", hasJSON); // all the parsers work fine
@@ -9602,9 +9514,8 @@ define(["./has"], function(has){
 	}
 });
 
-},
-'dojo/_base/Color':function(){
-define(["./kernel", "./lang", "./array", "./config"], function(dojo, lang, ArrayUtil, config){
+
+define("dojo/_base/Color", ["./kernel", "./lang", "./array", "./config"], function(dojo, lang, ArrayUtil, config){
 
 	var Color = dojo.Color = function(/*Array|String|Object*/ color){
 		// summary:
@@ -9834,12 +9745,11 @@ define(["./kernel", "./lang", "./array", "./config"], function(dojo, lang, Array
 	return Color;
 });
 
-},
-'dojo/_base/browser':function(){
+
 if(require.has){
 	require.has.add("config-selectorEngine", "acme");
 }
-define([
+define("dojo/_base/browser", [
 	"../ready",
 	"./kernel",
 	"./connect", // until we decide if connect is going back into non-browser environments
@@ -9865,9 +9775,8 @@ define([
 	return dojo;
 });
 
-},
-'dojo/_base/unload':function(){
-define(["./kernel", "./lang", "../on"], function(dojo, lang, on){
+
+define("dojo/_base/unload", ["./kernel", "./lang", "../on"], function(dojo, lang, on){
 
 // module:
 //		dojo/unload
@@ -9963,9 +9872,8 @@ return unload;
 
 });
 
-},
-'dojo/_base/html':function(){
-define(["./kernel", "../dom", "../dom-style", "../dom-attr", "../dom-prop", "../dom-class", "../dom-construct", "../dom-geometry"], function(dojo, dom, style, attr, prop, cls, ctr, geom){
+
+define("dojo/_base/html", ["./kernel", "../dom", "../dom-style", "../dom-attr", "../dom-prop", "../dom-class", "../dom-construct", "../dom-geometry"], function(dojo, dom, style, attr, prop, cls, ctr, geom){
 	// module:
 	//		dojo/dom
 
@@ -10358,9 +10266,8 @@ define(["./kernel", "../dom", "../dom-style", "../dom-attr", "../dom-prop", "../
 	return dojo;
 });
 
-},
-'dojo/dom-attr':function(){
-define(["exports", "./sniff", "./_base/lang", "./dom", "./dom-style", "./dom-prop"],
+
+define("dojo/dom-attr", ["exports", "./sniff", "./_base/lang", "./dom", "./dom-style", "./dom-prop"],
 		function(exports, has, lang, dom, style, prop){
 	// module:
 	//		dojo/dom-attr
@@ -10565,9 +10472,8 @@ define(["exports", "./sniff", "./_base/lang", "./dom", "./dom-style", "./dom-pro
 	};
 });
 
-},
-'dojo/dom-prop':function(){
-define(["exports", "./_base/kernel", "./sniff", "./_base/lang", "./dom", "./dom-style", "./dom-construct", "./_base/connect"],
+
+define("dojo/dom-prop", ["exports", "./_base/kernel", "./sniff", "./_base/lang", "./dom", "./dom-style", "./dom-construct", "./_base/connect"],
 		function(exports, dojo, has, lang, dom, style, ctr, conn){
 	// module:
 	//		dojo/dom-prop
@@ -10756,9 +10662,8 @@ define(["exports", "./_base/kernel", "./sniff", "./_base/lang", "./dom", "./dom-
 	};
 });
 
-},
-'dojo/dom-construct':function(){
-define(["exports", "./_base/kernel", "./sniff", "./_base/window", "./dom", "./dom-attr"],
+
+define("dojo/dom-construct", ["exports", "./_base/kernel", "./sniff", "./_base/window", "./dom", "./dom-attr"],
 		function(exports, dojo, has, win, dom, attr){
 	// module:
 	//		dojo/dom-construct
@@ -11135,9 +11040,8 @@ define(["exports", "./_base/kernel", "./sniff", "./_base/window", "./dom", "./do
 	};
 });
 
-},
-'dojo/dom-class':function(){
-define(["./_base/lang", "./_base/array", "./dom"], function(lang, array, dom){
+
+define("dojo/dom-class", ["./_base/lang", "./_base/array", "./dom"], function(lang, array, dom){
 	// module:
 	//		dojo/dom-class
 
@@ -11464,9 +11368,8 @@ define(["./_base/lang", "./_base/array", "./dom"], function(lang, array, dom){
 	return cls;
 });
 
-},
-'dojo/_base/NodeList':function(){
-define(["./kernel", "../query", "./array", "./html", "../NodeList-dom"], function(dojo, query, array){
+
+define("dojo/_base/NodeList", ["./kernel", "../query", "./array", "./html", "../NodeList-dom"], function(dojo, query, array){
 	// module:
 	//		dojo/_base/NodeList
 
@@ -11577,9 +11480,8 @@ define(["./kernel", "../query", "./array", "./html", "../NodeList-dom"], functio
 	return NodeList;
 });
 
-},
-'dojo/query':function(){
-define(["./_base/kernel", "./has", "./dom", "./on", "./_base/array", "./_base/lang", "./selector/_loader", "./selector/_loader!default"],
+
+define("dojo/query", ["./_base/kernel", "./has", "./dom", "./on", "./_base/array", "./_base/lang", "./selector/_loader", "./selector/_loader!default"],
 	function(dojo, has, dom, on, array, lang, loader, defaultEngine){
 
 	"use strict";
@@ -12292,12 +12194,11 @@ define(["./_base/kernel", "./has", "./dom", "./on", "./_base/array", "./_base/la
 	return query;
 });
 
-},
-'dojo/selector/_loader':function(){
-define(["../has", "require"],
+
+define("dojo/selector/_loader", ["../has", "require"],
 		function(has, require){
 
-"use strict";
+
 var testDiv = document.createElement("div");
 has.add("dom-qsa2.1", !!testDiv.querySelectorAll);
 has.add("dom-qsa3", function(){
@@ -12342,9 +12243,8 @@ return {
 };
 });
 
-},
-'dojo/selector/lite':function(){
-define(["../has", "../_base/kernel"], function(has, dojo){
+
+define("dojo/selector/lite", ["../has", "../_base/kernel"], function(has, dojo){
 "use strict";
 
 var testDiv = document.createElement("div");
@@ -12628,9 +12528,8 @@ liteEngine.match = matchesSelector ? function(node, selector, root){
 return liteEngine;
 });
 
-},
-'dojo/NodeList-dom':function(){
-define(["./_base/kernel", "./query", "./_base/array", "./_base/lang", "./dom-class", "./dom-construct", "./dom-geometry", "./dom-attr", "./dom-style"], function(dojo, query, array, lang, domCls, domCtr, domGeom, domAttr, domStyle){
+
+define("dojo/NodeList-dom", ["./_base/kernel", "./query", "./_base/array", "./_base/lang", "./dom-class", "./dom-construct", "./dom-geometry", "./dom-attr", "./dom-style"], function(dojo, query, array, lang, domCls, domCtr, domGeom, domAttr, domStyle){
 
 	// module:
 	//		dojo/NodeList-dom.js
@@ -13174,9 +13073,8 @@ define(["./_base/kernel", "./query", "./_base/array", "./_base/lang", "./dom-cla
 	return NodeList;
 });
 
-},
-'dojo/_base/xhr':function(){
-define([
+
+define("dojo/_base/xhr", [
 	"./kernel",
 	"./sniff",
 	"require",
@@ -13895,9 +13793,8 @@ define([
 	return dojo.xhr;
 });
 
-},
-'dojo/io-query':function(){
-define(["./_base/lang"], function(lang){
+
+define("dojo/io-query", ["./_base/lang"], function(lang){
 
 // module:
 //		dojo/io-query
@@ -13994,9 +13891,8 @@ return {
     }
 };
 });
-},
-'dojo/dom-form':function(){
-define(["./_base/lang", "./dom", "./io-query", "./json"], function(lang, dom, ioq, json){
+
+define("dojo/dom-form", ["./_base/lang", "./dom", "./io-query", "./json"], function(lang, dom, ioq, json){
 	// module:
 	//		dojo/dom-form
 
@@ -14146,9 +14042,8 @@ define(["./_base/lang", "./dom", "./io-query", "./json"], function(lang, dom, io
     return form;
 });
 
-},
-'dojo/request/watch':function(){
-define([
+
+define("dojo/request/watch", [
 	'./util',
 	'../errors/RequestTimeoutError',
 	'../errors/CancelError',
@@ -14258,9 +14153,8 @@ define([
 	return watch;
 });
 
-},
-'dojo/request/util':function(){
-define([
+
+define("dojo/request/util", [
 	'exports',
 	'../errors/RequestError',
 	'../errors/CancelError',
@@ -14419,9 +14313,8 @@ define([
 	};
 });
 
-},
-'dojo/errors/RequestError':function(){
-define(['./create'], function(create){
+
+define("dojo/errors/RequestError", ['./create'], function(create){
 	// module:
 	//		dojo/errors/RequestError
 
@@ -14437,9 +14330,8 @@ define(['./create'], function(create){
 	});
 });
 
-},
-'dojo/errors/RequestTimeoutError':function(){
-define(['./create', './RequestError'], function(create, RequestError){
+
+define("dojo/errors/RequestTimeoutError", ['./create', './RequestError'], function(create, RequestError){
 	// module:
 	//		dojo/errors/RequestTimeoutError
 
@@ -14455,9 +14347,8 @@ define(['./create', './RequestError'], function(create, RequestError){
 	});
 });
 
-},
-'dojo/request/xhr':function(){
-define([
+
+define("dojo/request/xhr", [
 	'../errors/RequestError',
 	'./watch',
 	'./handlers',
@@ -14810,9 +14701,8 @@ define([
 	return xhr;
 });
 
-},
-'dojo/request/handlers':function(){
-define([
+
+define("dojo/request/handlers", [
 	'../json',
 	'../_base/kernel',
 	'../_base/array',
@@ -14911,9 +14801,8 @@ define([
 	return handle;
 });
 
-},
-'dojo/_base/fx':function(){
-define(["./kernel", "./config", /*===== "./declare", =====*/ "./lang", "../Evented", "./Color", "../aspect", "../sniff", "../dom", "../dom-style"],
+
+define("dojo/_base/fx", ["./kernel", "./config", /*===== "./declare", =====*/ "./lang", "../Evented", "./Color", "../aspect", "../sniff", "../dom", "../dom-style"],
 	function(dojo, config, /*===== declare, =====*/ lang, Evented, Color, aspect, has, dom, style){
 	// module:
 	//		dojo/_base/fx
@@ -15590,25 +15479,25 @@ define(["./kernel", "./config", /*===== "./declare", =====*/ "./lang", "../Event
 	return basefx;
 });
 
-}}});
-require({cache:{
-'dojo/out':function(){
-define([], 1);
 
-},
-'dgrid/List':function(){
-define([
+define("dgrid/List", [
 	'dojo/_base/declare',
+	'dojo/dom-construct',
+	'dojo/dom-class',
 	'dojo/on',
 	'dojo/has',
 	'./util/misc',
-	'xstyle/has-class',
-	'put-selector/put',
-	'dojo/_base/sniff',
-	'xstyle/css!./css/dgrid.css'
-], function (declare, listen, has, miscUtil, hasClass, put) {
-	// Add user agent/feature CSS classes
-	hasClass('mozilla', 'touch');
+	'dojo/_base/sniff'
+], function (declare, domConstruct, domClass, listen, has, miscUtil) {
+	// Add user agent/feature CSS classes needed for structural CSS
+	var featureClasses = [];
+	if (has('mozilla')) {
+		featureClasses.push('has-mozilla');
+	}
+	if (has('touch')) {
+		featureClasses.push('has-touch');
+	}
+	domClass.add(document.documentElement, featureClasses);
 
 	// Add a feature test for pointer (only Dojo 1.10 has pointer-events and MSPointer tests)
 	has.add('pointer', function (global) {
@@ -15633,7 +15522,8 @@ define([
 
 	function getScrollbarSize(element, dimension) {
 		// Used by has tests for scrollbar width/height
-		put(document.body, element, '.dgrid-scrollbar-measure');
+		element.className = 'dgrid-scrollbar-measure';
+		document.body.appendChild(element);
 		var size = element['offset' + dimension] - element['client' + dimension];
 		cleanupTestElement(element);
 		return size;
@@ -15646,40 +15536,35 @@ define([
 	});
 
 	has.add('dom-rtl-scrollbar-left', function (global, doc, element) {
-		var div = put('div'),
+		var div = document.createElement('div'),
 			isLeft;
 
-		put(document.body, element, '.dgrid-scrollbar-measure[dir=rtl]');
-		put(element, div);
+		element.className = 'dgrid-scrollbar-measure';
+		element.setAttribute('dir', 'rtl');
+		element.appendChild(div);
+		document.body.appendChild(element);
 
 		// position: absolute makes IE always report child's offsetLeft as 0,
 		// but it conveniently makes other browsers reset to 0 as base, and all
 		// versions of IE are known to move the scrollbar to the left side for rtl
 		isLeft = !! 10  || !!has('trident') || div.offsetLeft >= has('dom-scrollbar-width');
 		cleanupTestElement(element);
-		put(div, '!');
+		domConstruct.destroy(div);
 		element.removeAttribute('dir');
 		return isLeft;
 	});
 
 	// var and function for autogenerating ID when one isn't provided
-	var autogen = 0;
+	var autoId = 0;
 	function generateId() {
-		return 'dgrid_' + autogen++;
+		return List.autoIdPrefix + autoId++;
 	}
 
 	// common functions for class and className setters/getters
 	// (these are run in instance context)
-	var spaceRx = / +/g;
 	function setClass(cls) {
-		// Format input appropriately for use with put...
-		var putClass = cls ? '.' + cls.replace(spaceRx, '.') : '';
-
-		// Remove any old classes, and add new ones.
-		if (this._class) {
-			putClass = '!' + this._class.replace(spaceRx, '!') + putClass;
-		}
-		put(this.domNode, putClass);
+		// TODO: unit test
+		domClass.replace(this.domNode, cls, this._class || '');
 
 		// Store for later retrieval/removal.
 		this._class = cls;
@@ -15695,7 +15580,7 @@ define([
 		}
 	};
 
-	return declare(null, {
+	var List = declare(null, {
 		tabableHeader: false,
 
 		// showHeader: Boolean
@@ -15752,7 +15637,7 @@ define([
 		listType: 'list',
 
 		create: function (params, srcNodeRef) {
-			var domNode = this.domNode = srcNodeRef || put('div'),
+			var domNode = this.domNode = srcNodeRef || document.createElement('div'),
 				cls;
 
 			if (params) {
@@ -15793,7 +15678,10 @@ define([
 			var domNode = this.domNode,
 				addUiClasses = this.addUiClasses,
 				self = this,
-				headerNode, bodyNode, footerNode, isRTL;
+				headerNode,
+				bodyNode,
+				footerNode,
+				isRTL;
 
 			// Detect RTL on html/body nodes; taken from dojo/dom-geometry
 			isRTL = this.isRTL = (document.body.dir || document.documentElement.dir ||
@@ -15803,15 +15691,19 @@ define([
 			// class / className setter), then apply standard classes/attributes
 			domNode.className = '';
 
-			put(domNode, '[role=grid].dgrid.dgrid-' + this.listType +
-				(addUiClasses ? '.ui-widget' : ''));
+			domNode.setAttribute('role', 'grid');
+			domClass.add(domNode, 'dgrid dgrid-' + this.listType +
+				(addUiClasses ? ' ui-widget' : ''))
 
 			// Place header node (initially hidden if showHeader is false).
-			headerNode = this.headerNode = put(domNode,
-				'div.dgrid-header.dgrid-header-row' +
-				(addUiClasses ? '.ui-widget-header' : '') +
-				(this.showHeader ? '' : '.dgrid-header-hidden'));
-			bodyNode = this.bodyNode = put(domNode, 'div.dgrid-scroller');
+			headerNode = this.headerNode = domConstruct.create('div', {
+				className: 'dgrid-header dgrid-header-row' + (addUiClasses ? ' ui-widget-header' : '') +
+					(this.showHeader ? '' : ' dgrid-header-hidden')
+			}, domNode);
+
+			bodyNode = this.bodyNode = domConstruct.create('div', {
+				className: 'dgrid-scroller'
+			}, domNode);
 
 			// Firefox 4+ adds overflow: auto elements to the tab index by default;
 			// force them to not be tabbable, but restrict this to Firefox,
@@ -15820,13 +15712,15 @@ define([
 				bodyNode.tabIndex = -1;
 			}
 
-			this.headerScrollNode = put(domNode, 'div.dgrid-header.dgrid-header-scroll.dgrid-scrollbar-width' +
-				(addUiClasses ? '.ui-widget-header' : ''));
+			this.headerScrollNode = domConstruct.create('div', {
+				className: 'dgrid-header dgrid-header-scroll dgrid-scrollbar-width' +
+					(addUiClasses ? ' ui-widget-header' : '')
+			}, domNode);
 
 			// Place footer node (initially hidden if showFooter is false).
-			footerNode = this.footerNode = put('div.dgrid-footer' +
-				(this.showFooter ? '' : '.dgrid-footer-hidden'));
-			put(domNode, footerNode);
+			footerNode = this.footerNode = domConstruct.create('div', {
+				className: 'dgrid-footer' + (this.showFooter ? '' : ' dgrid-footer-hidden')
+			}, domNode);
 
 			if (isRTL) {
 				domNode.className += ' dgrid-rtl' +
@@ -15845,8 +15739,10 @@ define([
 			this.configStructure();
 			this.renderHeader();
 
-			this.contentNode = this.touchNode = put(this.bodyNode,
-				'div.dgrid-content' + (addUiClasses ? '.ui-widget-content' : ''));
+			this.contentNode = this.touchNode = domConstruct.create('div', {
+				className: 'dgrid-content' + (addUiClasses ? ' ui-widget-content' : '')
+			}, this.bodyNode);
+
 			// add window resize handler, with reference for later removal if needed
 			this._listeners.push(this._resizeHandle = listen(window, 'resize',
 				miscUtil.throttleDelayed(winResizeHandler, this)));
@@ -15960,14 +15856,14 @@ define([
 			this._started = false;
 			this.cleanup();
 			// destroy DOM
-			put(this.domNode, '!');
+			domConstruct.destroy(this.domNode);
 		},
 		refresh: function () {
 			// summary:
 			//		refreshes the contents of the grid
 			this.cleanup();
 			this._rowIdToObject = {};
-			this._autoId = 0;
+			this._autoRowId = 0;
 
 			// make sure all the content has been removed so it can be recreated
 			this.contentNode.innerHTML = '';
@@ -15986,11 +15882,12 @@ define([
 			//		Number of milliseconds between adding and removing the
 			//		ui-state-highlight class.
 
+			var classes = 'dgrid-highlight' + (this.addUiClasses ? ' ui-state-highlight' : '');
+
 			rowElement = rowElement.element || rowElement;
-			put(rowElement, '.dgrid-highlight' +
-				(this.addUiClasses ? '.ui-state-highlight' : ''));
+			domClass.add(rowElement, classes);
 			setTimeout(function () {
-				put(rowElement, '!dgrid-highlight!ui-state-highlight');
+				domClass.remove(rowElement, classes);
 			}, delay || this.highlightDuration);
 		},
 
@@ -16003,8 +15900,8 @@ define([
 					// Skip non-numeric, non-rows
 					if (next.rowIndex > -1) {
 						if (this.maintainOddEven) {
-							if ((next.className + ' ').indexOf('dgrid-row ') > -1) {
-								put(next, '.' + (rowIndex % 2 === 1 ? oddClass : evenClass) + '!' +
+							if (domClass.contains(next, 'dgrid-row')) {
+								domClass.replace(next, (rowIndex % 2 === 1 ? oddClass : evenClass),
 									(rowIndex % 2 === 0 ? oddClass : evenClass));
 							}
 						}
@@ -16053,7 +15950,7 @@ define([
 			// no-op in a plain list
 		},
 
-		_autoId: 0,
+		_autoRowId: 0,
 		insertRow: function (object, parent, beforeNode, i, options) {
 			// summary:
 			//		Creates a single row in the grid.
@@ -16062,7 +15959,7 @@ define([
 			// (This is used by tree to allow the same object to appear under
 			// multiple parents.)
 			var id = this.id + '-row-' + ((this.collection && this.collection.getIdentity) ?
-					this.collection.getIdentity(object) : this._autoId++),
+					this.collection.getIdentity(object) : this._autoRowId++),
 				row = byId(id),
 				previousRow = row && row.previousSibling;
 
@@ -16097,7 +15994,9 @@ define([
 			// options: Object?
 			//		Optional object with additional options
 
-			return put('div', '' + value);
+			var div = document.createElement('div');
+			div.appendChild(document.createTextNode(value));
+			return div;
 		},
 		removeRow: function (rowElement, preserveDom) {
 			// summary:
@@ -16116,7 +16015,7 @@ define([
 			rowElement = rowElement.element || rowElement;
 			delete this._rowIdToObject[rowElement.id];
 			if (!preserveDom) {
-				put(rowElement, '!');
+				domConstruct.destroy(rowElement);
 			}
 		},
 
@@ -16390,7 +16289,7 @@ define([
 			this.showHeader = show;
 
 			// add/remove class which has styles for "hiding" header
-			put(headerNode, (show ? '!' : '.') + 'dgrid-header-hidden');
+			domClass.toggle(headerNode, 'dgrid-header-hidden', !show);
 
 			this.renderHeader();
 			this.resize(); // resize to account for (dis)appearance of header
@@ -16405,19 +16304,21 @@ define([
 			this.showFooter = show;
 
 			// add/remove class which has styles for hiding footer
-			put(this.footerNode, (show ? '!' : '.') + 'dgrid-footer-hidden');
+			domClass.toggle(this.footerNode, 'dgrid-footer-hidden', !show);
 
 			this.resize(); // to account for (dis)appearance of footer
 		}
 	});
+
+	List.autoIdPrefix = 'dgrid_';
+
+	return List;
 });
 
-},
-'dgrid/util/misc':function(){
-define([
-	'dojo/has',
-	'put-selector/put'
-], function (has, put) {
+
+define("dgrid/util/misc", [
+	'dojo/has'
+], function (has) {
 	// summary:
 	//		This module defines miscellaneous utility methods for purposes of
 	//		adding styles, and throttling/debouncing function calls.
@@ -16543,20 +16444,6 @@ define([
 			}
 		},
 
-		// DOM-related functions
-
-		contains: function (parent, node) {
-			// summary:
-			//		Checks to see if an element is contained in another element.
-
-			if (has('dom-contains')) {
-				return parent.contains(node);
-			}
-			else {
-				return parent.compareDocumentPosition(node) & /* DOCUMENT_POSITION_CONTAINS */ 8;
-			}
-		},
-
 		// CSS-related functions
 
 		addCssRule: function (selector, css) {
@@ -16566,7 +16453,8 @@ define([
 
 			if (!extraSheet) {
 				// First time, create an extra stylesheet for adding rules
-				extraSheet = put(document.getElementsByTagName('head')[0], 'style');
+				extraSheet = document.createElement('style');
+				document.getElementsByTagName('head')[0].appendChild(extraSheet);
 				// Keep reference to actual StyleSheet object (`styleSheet` for IE < 9)
 				extraSheet = extraSheet.sheet || extraSheet.styleSheet;
 				// Store name of method used to remove rules (`removeRule` for IE < 9)
@@ -16611,434 +16499,17 @@ define([
 	};
 	return util;
 });
-},
-'put-selector/put':function(){
-(function(define){
-var forDocument, fragmentFasterHeuristic = /[-+,> ]/; // if it has any of these combinators, it is probably going to be faster with a document fragment 
-define([], forDocument = function(doc, newFragmentFasterHeuristic){
-"use strict";
-	// module:
-	//		put-selector/put
-	// summary:
-	//		This module defines a fast lightweight function for updating and creating new elements
-	//		terse, CSS selector-based syntax. The single function from this module creates
-	// 		new DOM elements and updates existing elements. See README.md for more information.
-	//	examples:
-	//		To create a simple div with a class name of "foo":
-	//		|	put("div.foo");
-	fragmentFasterHeuristic = newFragmentFasterHeuristic || fragmentFasterHeuristic;
-	var selectorParse = /(?:\s*([-+ ,<>]))?\s*(\.|!\.?|#)?([-\w\u00A0-\uFFFF%$|]+)?(?:\[([^\]=]+)=?['"]?([^\]'"]*)['"]?\])?/g,
-		undefined, namespaceIndex, namespaces = false,
-		doc = doc || document,
-		ieCreateElement = typeof doc.createElement == "object"; // telltale sign of the old IE behavior with createElement that does not support later addition of name 
-	function insertTextNode(element, text){
-		element.appendChild(doc.createTextNode(text));
-	}
-	function put(topReferenceElement){
-		var fragment, lastSelectorArg, nextSibling, referenceElement, current,
-			args = arguments,
-			returnValue = args[0]; // use the first argument as the default return value in case only an element is passed in
-		function insertLastElement(){
-			// we perform insertBefore actions after the element is fully created to work properly with 
-			// <input> tags in older versions of IE that require type attributes
-			//	to be set before it is attached to a parent.
-			// We also handle top level as a document fragment actions in a complex creation 
-			// are done on a detached DOM which is much faster
-			// Also if there is a parse error, we generally error out before doing any DOM operations (more atomic) 
-			if(current && referenceElement && current != referenceElement){
-				(referenceElement == topReferenceElement &&
-					// top level, may use fragment for faster access 
-					(fragment || 
-						// fragment doesn't exist yet, check to see if we really want to create it 
-						(fragment = fragmentFasterHeuristic.test(argument) && doc.createDocumentFragment()))
-							// any of the above fails just use the referenceElement  
-							 ? fragment : referenceElement).
-								insertBefore(current, nextSibling || null); // do the actual insertion
-			}
-		}
-		for(var i = 0; i < args.length; i++){
-			var argument = args[i];
-			if(typeof argument == "object"){
-				lastSelectorArg = false;
-				if(argument instanceof Array){
-					// an array
-					current = doc.createDocumentFragment();
-					for(var key = 0; key < argument.length; key++){
-						current.appendChild(put(argument[key]));
-					}
-					argument = current;
-				}
-				if(argument.nodeType){
-					current = argument;
-					insertLastElement();
-					referenceElement = argument;
-					nextSibling = 0;
-				}else{
-					// an object hash
-					for(var key in argument){
-						current[key] = argument[key];
-					}				
-				}
-			}else if(lastSelectorArg){
-				// a text node should be created
-				// take a scalar value, use createTextNode so it is properly escaped
-				// createTextNode is generally several times faster than doing an escaped innerHTML insertion: http://jsperf.com/createtextnode-vs-innerhtml/2
-				lastSelectorArg = false;
-				insertTextNode(current, argument);
-			}else{
-				if(i < 1){
-					// if we are starting with a selector, there is no top element
-					topReferenceElement = null;
-				}
-				lastSelectorArg = true;
-				var leftoverCharacters = argument.replace(selectorParse, function(t, combinator, prefix, value, attrName, attrValue){
-					if(combinator){
-						// insert the last current object
-						insertLastElement();
-						if(combinator == '-' || combinator == '+'){
-							// + or - combinator, 
-							// TODO: add support for >- as a means of indicating before the first child?
-							referenceElement = (nextSibling = (current || referenceElement)).parentNode;
-							current = null;
-							if(combinator == "+"){
-								nextSibling = nextSibling.nextSibling;
-							}// else a - operator, again not in CSS, but obvious in it's meaning (create next element before the current/referenceElement)
-						}else{
-							if(combinator == "<"){
-								// parent combinator (not really in CSS, but theorized, and obvious in it's meaning)
-								referenceElement = current = (current || referenceElement).parentNode;
-							}else{
-								if(combinator == ","){
-									// comma combinator, start a new selector
-									referenceElement = topReferenceElement;
-								}else if(current){
-									// else descendent or child selector (doesn't matter, treated the same),
-									referenceElement = current;
-								}
-								current = null;
-							}
-							nextSibling = 0;
-						}
-						if(current){
-							referenceElement = current;
-						}
-					}
-					var tag = !prefix && value;
-					if(tag || (!current && (prefix || attrName))){
-						if(tag == "$"){
-							// this is a variable to be replaced with a text node
-							insertTextNode(referenceElement, args[++i]);
-						}else{
-							// Need to create an element
-							tag = tag || put.defaultTag;
-							var ieInputName = ieCreateElement && args[i +1] && args[i +1].name;
-							if(ieInputName){
-								// in IE, we have to use the crazy non-standard createElement to create input's that have a name 
-								tag = '<' + tag + ' name="' + ieInputName + '">';
-							}
-							// we swtich between creation methods based on namespace usage
-							current = namespaces && ~(namespaceIndex = tag.indexOf('|')) ?
-								doc.createElementNS(namespaces[tag.slice(0, namespaceIndex)], tag.slice(namespaceIndex + 1)) : 
-								doc.createElement(tag);
-						}
-					}
-					if(prefix){
-						if(value == "$"){
-							value = args[++i];
-						}
-						if(prefix == "#"){
-							// #id was specified
-							current.id = value;
-						}else{
-							// we are in the className addition and removal branch
-							var currentClassName = current.className;
-							// remove the className (needed for addition or removal)
-							// see http://jsperf.com/remove-class-name-algorithm/2 for some tests on this
-							var removed = currentClassName && (" " + currentClassName + " ").replace(" " + value + " ", " ");
-							if(prefix == "."){
-								// addition, add the className
-								current.className = currentClassName ? (removed + value).substring(1) : value;
-							}else{
-								// else a '!' class removal
-								if(argument == "!"){
-									var parentNode;
-									// special signal to delete this element
-									if(ieCreateElement){
-										// use the ol' innerHTML trick to get IE to do some cleanup
-										put("div", current, '<').innerHTML = "";
-									}else if(parentNode = current.parentNode){ // intentional assigment
-										// use a faster, and more correct (for namespaced elements) removal (http://jsperf.com/removechild-innerhtml)
-										parentNode.removeChild(current);
-									}
-								}else{
-									// we already have removed the class, just need to trim
-									removed = removed.substring(1, removed.length - 1);
-									// only assign if it changed, this can save a lot of time
-									if(removed != currentClassName){
-										current.className = removed;
-									}
-								}
-							}
-							// CSS class removal
-						}
-					}
-					if(attrName){
-						if(attrValue == "$"){
-							attrValue = args[++i];
-						}
-						// [name=value]
-						if(attrName == "style"){
-							// handle the special case of setAttribute not working in old IE
-							current.style.cssText = attrValue;
-						}else{
-							var method = attrName.charAt(0) == "!" ? (attrName = attrName.substring(1)) && 'removeAttribute' : 'setAttribute';
-							attrValue = attrValue === '' ? attrName : attrValue;
-							// determine if we need to use a namespace
-							namespaces && ~(namespaceIndex = attrName.indexOf('|')) ?
-								current[method + "NS"](namespaces[attrName.slice(0, namespaceIndex)], attrName.slice(namespaceIndex + 1), attrValue) :
-								current[method](attrName, attrValue);
-						}
-					}
-					return '';
-				});
-				if(leftoverCharacters){
-					throw new SyntaxError("Unexpected char " + leftoverCharacters + " in " + argument);
-				}
-				insertLastElement();
-				referenceElement = returnValue = current || referenceElement;
-			}
-		}
-		if(topReferenceElement && fragment){
-			// we now insert the top level elements for the fragment if it exists
-			topReferenceElement.appendChild(fragment);
-		}
-		return returnValue;
-	}
-	put.addNamespace = function(name, uri){
-		if(doc.createElementNS){
-			(namespaces || (namespaces = {}))[name] = uri;
-		}else{
-			// for old IE
-			doc.namespaces.add(name, uri);
-		}
-	};
-	put.defaultTag = "div";
-	put.forDocument = forDocument;
-	return put;
-});
-})(function(id, deps, factory){
-	factory = factory || deps;
-	if(typeof define === "function"){
-		// AMD loader
-		define([], function(){
-			return factory();
-		});
-	}else if(typeof window == "undefined"){
-		// server side JavaScript, probably (hopefully) NodeJS
-		require("./node-html")(module, factory);
-	}else{
-		// plain script in a browser
-		put = factory();
-	}
-});
 
-},
-'xstyle/has-class':function(){
-define(["dojo/has"], function(has){
-	var tested = {};
-	return function(){
-		var test, args = arguments;
-		for(var i = 0; i < args.length; i++){
-			var test = args[i];
-			if(!tested[test]){
-				tested[test] = true;
-				var parts = test.match(/^(no-)?(.+?)((-[\d\.]+)(-[\d\.]+)?)?$/), // parse the class name
-					hasResult = has(parts[2]), // the actual has test
-					lower = -parts[4]; // lower bound if it is in the form of test-4 or test-4-6 (would be 4)
-				if((lower > 0 ? lower <= hasResult && (-parts[5] || lower) >= hasResult :  // if it has a range boundary, compare to see if we are in it
-						!!hasResult) == !parts[1]){ // parts[1] is the no- prefix that can negate the result
-					document.documentElement.className += ' has-' + test;
-				}
-			}
-		}
-	}
-});
-},
-'xstyle/css':function(){
-define(["require"], function(moduleRequire){
-"use strict";
-/*
- * AMD css! plugin
- * This plugin will load and wait for css files. This allows JavaScript resources to 
- * fully there dependencies on stylesheets. This can also be used when
- * loading css files as part of a layer or as a way to apply a run-time theme. This
- * module checks to see if the CSS is already loaded before incurring the cost
- * of loading the full CSS loader codebase
- */
- 	function testElementStyle(tag, id, property){
- 		// test an element's style
-		var docElement = document.documentElement;
-		var testDiv = docElement.insertBefore(document.createElement(tag), docElement.firstChild);
-		testDiv.id = id;
-		var styleValue = (testDiv.currentStyle || getComputedStyle(testDiv, null))[property];
-		docElement.removeChild(testDiv);
- 		return styleValue;
- 	} 
- 	return {
-		load: function(resourceDef, require, callback, config) {
-			var url = require.toUrl(resourceDef);
-			var options;
-			if(url.match(/!$/)){
-				// a final ! can be used to indicate not to wait for the stylesheet to load
-				options = {
-					wait: false
-				};
-				url = url.slice(0, -1);
-			}
-			var cachedCss = require.cache && require.cache['url:' + url];
-			if(cachedCss){
-				// we have CSS cached inline in the build
-				if(cachedCss.xCss){
-					var parser = cachedCss.parser;
-					var xCss =cachedCss.xCss;
-					cachedCss = cachedCss.cssText;
-				}
-				moduleRequire(['./core/load-css'],function(load){
-					checkForParser(load.insertCss(cachedCss));
-				});
-				if(xCss){
-					//require([parsed], callback);
-				}
-				return;
-			}
-			function checkForParser(styleSheetElement){
-				var parser = testElementStyle('x-parse', null, 'content');
-				var sheet = styleSheetElement && 
-					(styleSheetElement.sheet || styleSheetElement.styleSheet);
-				if(parser && parser != 'none'){
-					// TODO: wait for parser to load
-					require([eval(parser)], function(parser){
-						if(styleSheetElement){
-							parser.process(styleSheetElement, callback);
-						}else{
-							parser.processAll();
-							callback(sheet);
-						}
-					});
-				}else{
-					callback(sheet);
-				}
-			}
-			
-			// if there is an id test available, see if the referenced rule is already loaded,
-			// and if so we can completely avoid any dynamic CSS loading. If it is
-			// not present, we need to use the dynamic CSS loader.
-			var displayStyle = testElementStyle('div', resourceDef.replace(/\//g,'-').replace(/\..*/,'') + "-loaded", 'display');
-			if(displayStyle == "none"){
-				return checkForParser();
-			}
-			// use dynamic loader
-			moduleRequire(["./core/load-css"], function(load){
-				load(url, checkForParser, options);
-			});
-		}
-	};
-});
-
-},
-'xstyle/core/load-css':function(){
-define([], function(){
-	'use strict';
-	// this module is responsible for doing the loading/insertion
-	// of stylesheets to get CSS loaded.
-
-	var cache = typeof _css_cache == 'undefined' ? {} : _css_cache;
-	var doc = document;
-
-	function has(){
-		return !doc.createStyleSheet;
-	}
-	var head = doc.head;
-	function insertCss(css){
-		if(has("dom-create-style-element")){
-			// we can use standard <style> element creation
-			styleSheet = doc.createElement("style");
-			styleSheet.setAttribute("type", "text/css");
-			styleSheet.appendChild(doc.createTextNode(css));
-			head.insertBefore(styleSheet, head.firstChild);
-			return styleSheet;
-		}
-		else{
-			// IE's stylesheet insertion
-			var styleSheet = doc.createStyleSheet();
-			styleSheet.cssText = css;
-			return styleSheet.owningElement;
-		}
-	}
-
-	function load(resourceDef, callback, options){
-		var cached = cache[resourceDef];
-		if(cached){
-			// if it is cached (from a build), we directly insert
-			link = insertCss(cached);
-			return callback(link);
-		}
-		// create a link element to load the stylesheet
-		var link = doc.createElement('link');
-		link.type = 'text/css';
-		link.rel = 'stylesheet';
-		link.href = resourceDef;
-		var wait = !options || options.wait !== false;
-		// old webkit's would claim to have onload, but didn't really support it
-		var webkitVersion = navigator.userAgent.match(/AppleWebKit\/(\d+\.?\d*)/);
-		webkitVersion = webkitVersion && +webkitVersion[1];
-		if(link.onload === null && !(webkitVersion < 536)){
-			// most browsers support this onload function now
-			link.onload = function(){
-				// cleanup
-				link.onload = null;
-				link.onerror = null;
-				wait && callback(link);
-			};
-			// always add the error handler, so we can notify of any errors
-			link.onerror = function(){
-				// there isn't really any recourse in AMD for errors, so
-				// we just output the error and continue on
-				console.error('Error loading stylesheet ' + resourceDef);
-				wait && callback(link);
-			};
-		}else if(wait){
-			var interval = setInterval(function(){
-				if(link.style){
-					// loaded
-					clearInterval(interval);
-					callback(link);
-				}
-			}, 15);
-		}
-		// add it to the head to trigger loading
-		(head || doc.getElementsByTagName('head')[0]).appendChild(link);
-		if(!wait){
-			// don't wait for the stylesheet to load, proceed
-			callback(link);
-		}
-	}
-	load.insertCss = insertCss;
-	return load;
-});
-
-},
-'dgrid/Keyboard':function(){
-define([
+define("dgrid/Keyboard", [
 	'dojo/_base/declare',
 	'dojo/aspect',
+	'dojo/dom-class',
 	'dojo/on',
 	'dojo/_base/lang',
 	'dojo/has',
-	'put-selector/put',
 	'./util/misc',
 	'dojo/_base/sniff'
-], function (declare, aspect, on, lang, has, put, miscUtil) {
+], function (declare, aspect, domClass, on, lang, has, miscUtil) {
 
 	var delegatingInputTypes = {
 			checkbox: 1,
@@ -17140,7 +16611,7 @@ define([
 						var focusedNode = grid._focusedNode || initialNode;
 
 						// do not update the focused element if we already have a valid one
-						if (isFocusableClass.test(focusedNode.className) && miscUtil.contains(areaNode, focusedNode)) {
+						if (isFocusableClass.test(focusedNode.className) && areaNode.contains(focusedNode)) {
 							return rows;
 						}
 
@@ -17190,6 +16661,8 @@ define([
 				});
 			}
 			enableNavigation(this.contentNode);
+
+			this._debouncedEnsureScroll = miscUtil.debounce(this._ensureScroll, this);
 		},
 
 		removeRow: function (rowElement) {
@@ -17284,7 +16757,7 @@ define([
 				else {
 					// Row/cell was not focused or is not visible, but we still need to
 					// update _focusedNode and the element's tabIndex/class
-					put(newTarget.element, '.dgrid-focus');
+					domClass.add(newTarget.element, 'dgrid-focus');
 					newTarget.element.tabIndex = this.tabIndex;
 					this._focusedNode = newTarget.element;
 				}
@@ -17309,6 +16782,57 @@ define([
 			// but there is significantly less code involved (here and above).
 			return aspect.after( // Handle
 				this[isHeader ? 'headerKeyMap' : 'keyMap'], key, callback, true);
+		},
+
+		_ensureRowScroll: function (rowElement) {
+			// summary:
+			//		Ensures that the entire row is visible within the viewport.
+			//		Called for cell navigation in complex structures.
+
+			var scrollY = this.getScrollPosition().y;
+			if (scrollY > rowElement.offsetTop) {
+				// Row starts above the viewport
+				this.scrollTo({ y: rowElement.offsetTop });
+			}
+			else if (scrollY + this.contentNode.offsetHeight < rowElement.offsetTop + rowElement.offsetHeight) {
+				// Row ends below the viewport
+				this.scrollTo({ y: rowElement.offsetTop - this.contentNode.offsetHeight + rowElement.offsetHeight });
+			}
+		},
+
+		_ensureColumnScroll: function (cellElement) {
+			// summary:
+			//		Ensures that the entire cell is visible in the viewport.
+			//		Called in cases where the grid can scroll horizontally.
+
+			var scrollX = this.getScrollPosition().x;
+			var cellLeft = cellElement.offsetLeft;
+			if (scrollX > cellLeft) {
+				this.scrollTo({ x: cellLeft });
+			}
+			else {
+				var bodyWidth = this.bodyNode.clientWidth;
+				var cellWidth = cellElement.offsetWidth;
+				var cellRight = cellLeft + cellWidth;
+				if (scrollX + bodyWidth < cellRight) {
+					// Adjust so that the right side of the cell and grid body align,
+					// unless the cell is actually wider than the body - then align the left sides
+					this.scrollTo({ x: bodyWidth > cellWidth ? cellRight - bodyWidth : cellLeft });
+				}
+			}
+		},
+
+		_ensureScroll: function (cell, isHeader) {
+			// summary:
+			//		Corrects scroll based on the position of the newly-focused row/cell
+			//		as necessary based on grid configuration and dimensions.
+
+			if(this.cellNavigation && (this.columnSets || this.subRows.length > 1) && !isHeader){
+				this._ensureRowScroll(cell.row.element);
+			}
+			if(this.bodyNode.clientWidth < this.contentNode.offsetWidth){
+				this._ensureColumnScroll(cell.element);
+			}
 		},
 
 		_focusOnNode: function (element, isHeader, event) {
@@ -17356,7 +16880,8 @@ define([
 			if (focusedNode) {
 				// Clean up previously-focused element
 				// Remove the class name and the tabIndex attribute
-				put(focusedNode, '!dgrid-focus[!tabIndex]');
+				domClass.remove(focusedNode, 'dgrid-focus');
+				focusedNode.removeAttribute('tabindex');
 
 				// Expose object representing focused cell or row losing focus, via
 				// event.cell or event.row; which is set depends on cellNavigation.
@@ -17380,11 +16905,13 @@ define([
 				element.tabIndex = this.tabIndex;
 				element.focus();
 			}
-			put(element, '.dgrid-focus');
+			domClass.add(element, 'dgrid-focus');
 
 			if (event) {
 				on.emit(focusedNode, 'dgrid-cellfocusin', event);
 			}
+
+			this._debouncedEnsureScroll(cell, isHeader);
 		},
 
 		focusHeader: function (element) {
@@ -17567,18 +17094,19 @@ define([
 
 	return Keyboard;
 });
-},
-'dgrid/Grid':function(){
-define([
+
+
+define("dgrid/Grid", [
 	'dojo/_base/declare',
 	'dojo/_base/kernel',
+	'dojo/dom-construct',
+	'dojo/dom-class',
 	'dojo/on',
 	'dojo/has',
-	'put-selector/put',
 	'./List',
 	'./util/misc',
 	'dojo/_base/sniff'
-], function (declare, kernel, listen, has, put, List, miscUtil) {
+], function (declare, kernel, domConstruct, domClass, listen, has, List, miscUtil) {
 	function appendIfNode(parent, subNode) {
 		if (subNode && subNode.nodeType) {
 			parent.appendChild(subNode);
@@ -17593,11 +17121,20 @@ define([
 
 	var Grid = declare(List, {
 		columns: null,
+
+		// hasNeutralSort: Boolean
+		//		Determines behavior of toggling sort on the same column.
+		//		If false, sort toggles between ascending and descending and cannot be
+		//		reset to neutral without sorting another column.
+		//		If true, sort toggles between ascending, descending, and neutral.
+		hasNeutralSort: false,
+
 		// cellNavigation: Boolean
 		//		This indicates that focus is at the cell level. This may be set to false to cause
 		//		focus to be at the row level, which is useful if you want only want row-level
 		//		navigation.
 		cellNavigation: true,
+
 		tabableHeader: true,
 		showHeader: true,
 		column: function (target) {
@@ -17663,9 +17200,12 @@ define([
 		createRowCells: function (tag, each, subRows, object) {
 			// summary:
 			//		Generates the grid for each row (used by renderHeader and and renderRow)
-			var row = put('table.dgrid-row-table[role=presentation]'),
+			var row = domConstruct.create('table', {
+					className: 'dgrid-row-table',
+					role: 'presentation'
+				}),
 				// IE < 9 needs an explicit tbody; other browsers do not
-				tbody = ( 10  < 9) ? put(row, 'tbody') : row,
+				tbody = ( 10  < 9) ? domConstruct.create('tbody', null, row) : row,
 				tr,
 				si, sl, i, l, // iterators
 				subRow, column, id, extraClasses, className,
@@ -17679,9 +17219,9 @@ define([
 				subRow = subRows[si];
 				// for single-subrow cases in modern browsers, TR can be skipped
 				// http://jsperf.com/table-without-trs
-				tr = put(tbody, 'tr');
+				tr = domConstruct.create('tr', null, tbody);
 				if (subRow.className) {
-					put(tr, '.' + subRow.className);
+					tr.className = subRow.className;
 				}
 
 				for (i = 0, l = subRow.length; i < l; i++) {
@@ -17690,19 +17230,19 @@ define([
 					id = column.id;
 
 					extraClasses = column.field ?
-						'.field-' + replaceInvalidChars(column.field) :
+						' field-' + replaceInvalidChars(column.field) :
 						'';
 					className = typeof column.className === 'function' ?
 						column.className(object) : column.className;
 					if (className) {
-						extraClasses += '.' + className;
+						extraClasses += ' ' + className;
 					}
 
-					cell = put(tag +
-						'.dgrid-cell' +
-						(id ? '.dgrid-column-' + replaceInvalidChars(id) : '') +
-						extraClasses.replace(/ +/g, '.') +
-						'[role=' + (tag === 'th' ? 'columnheader' : 'gridcell') + ']');
+					cell = domConstruct.create(tag, {
+						className: 'dgrid-cell' +
+							(id ? ' dgrid-column-' + replaceInvalidChars(id) : '') + extraClasses,
+						role: tag === 'th' ? 'columnheader' : 'gridcell'
+					});
 					cell.columnId = id;
 					colSpan = column.colSpan;
 					if (colSpan) {
@@ -17783,21 +17323,20 @@ define([
 			// 1. So that one can set a fixed height on rows (heights can't be set on <table>'s AFAICT)
 			// 2. So that outline style can be set on a row when it is focused,
 			// and Safari's outline style is broken on <table>
-			return put('div[role=row]>', row);
+			var div = domConstruct.create('div', { role: 'row' });
+			div.appendChild(row);
+			return div;
 		},
 		renderHeader: function () {
 			// summary:
 			//		Setup the headers for the grid
 			var grid = this,
-				headerNode = this.headerNode,
-				i = headerNode.childNodes.length;
+				headerNode = this.headerNode;
 
 			headerNode.setAttribute('role', 'row');
 
 			// clear out existing header in case we're resetting
-			while (i--) {
-				put(headerNode.childNodes[i], '!');
-			}
+			domConstruct.empty(headerNode);
 
 			var row = this.createRowCells('th', function (th, column) {
 				var contentNode = column.headerNode = th;
@@ -17831,17 +17370,30 @@ define([
 				// respond to click, space keypress, or enter keypress
 				if (event.type === 'click' || event.keyCode === 32 ||
 						(!has('opera') && event.keyCode === 13)) {
-					var target = event.target,
-						field, sort, newSort, eventObj;
+					var target = event.target;
+					var field;
+					var sort;
+					var newSort;
+					var eventObj;
+
 					do {
 						if (target.sortable) {
-							// If the click is on the same column as the active sort,
-							// reverse sort direction
-							newSort = [{
-								property: (field = target.field || target.columnId),
-								descending: (sort = grid.sort[0]) && sort.property === field &&
-									!sort.descending
-							}];
+							field = target.field || target.columnId;
+							sort = grid.sort[0];
+							if (!grid.hasNeutralSort || !sort || sort.property !== field || !sort.descending) {
+								// If the user toggled the same column as the active sort,
+								// reverse sort direction
+								newSort = [{
+									property: field,
+									descending: sort && sort.property === field &&
+										!sort.descending
+								}];
+							}
+							else {
+								// If the grid allows neutral sort and user toggled an already-descending column,
+								// clear sort entirely
+								newSort = [];
+							}
 
 							// Emit an event with the new sort
 							eventObj = {
@@ -17938,9 +17490,9 @@ define([
 			// Clean up UI from any previous sort
 			if (this._lastSortedArrow) {
 				// Remove the sort classes from the parent node
-				put(this._lastSortedArrow, '<!dgrid-sort-up!dgrid-sort-down');
+				domClass.remove(this._lastSortedArrow.parentNode, 'dgrid-sort-up dgrid-sort-down');
 				// Destroy the lastSortedArrow node
-				put(this._lastSortedArrow, '!');
+				domConstruct.destroy(this._lastSortedArrow);
 				delete this._lastSortedArrow;
 			}
 
@@ -17963,10 +17515,12 @@ define([
 			if (target) {
 				target = target.contents || target;
 				// Place sort arrow under clicked node, and add up/down sort class
-				arrowNode = this._lastSortedArrow = put('div.dgrid-sort-arrow.ui-icon[role=presentation]');
-				arrowNode.innerHTML = '&nbsp;';
-				target.insertBefore(arrowNode, target.firstChild);
-				put(target, desc ? '.dgrid-sort-down' : '.dgrid-sort-up');
+				arrowNode = this._lastSortedArrow = domConstruct.create('div', {
+					className: 'dgrid-sort-arrow ui-icon',
+					innerHTML: '&nbsp;',
+					role: 'presentation'
+				}, target, 'first');
+				domClass.add(target, 'dgrid-sort-' + (desc ? 'down' : 'up'));
 				// Call resize in case relocation of sort arrow caused any height changes
 				this.resize();
 			}
@@ -18112,6 +17666,7 @@ define([
 			// After re-rendering the header, re-apply the sort arrow if needed.
 			if (this._started) {
 				if (this.sort.length) {
+					this._lastSortedArrow = null;
 					this.updateSortArrow(this.sort);
 				} else {
 					// Only call resize directly if we didn't call updateSortArrow,
@@ -18127,21 +17682,21 @@ define([
 	return Grid;
 });
 
-},
-'dgrid/Tree':function(){
-define([
+
+define("dgrid/Tree", [
 	'dojo/_base/declare',
 	'dojo/_base/lang',
 	'dojo/_base/array',
 	'dojo/aspect',
+	'dojo/dom-construct',
+	'dojo/dom-class',
 	'dojo/on',
 	'dojo/query',
 	'dojo/when',
 	'./util/has-css3',
 	'./Grid',
-	'dojo/has!touch?./util/touch',
-	'put-selector/put'
-], function (declare, lang, arrayUtil, aspect, on, querySelector, when, has, Grid, touchUtil, put) {
+	'dojo/has!touch?./util/touch'
+], function (declare, lang, arrayUtil, aspect, domConstruct, domClass, on, querySelector, when, has, Grid, touchUtil) {
 
 	return declare(null, {
 		// collapseOnRefresh: Boolean
@@ -18200,9 +17755,9 @@ define([
 				var expanded = expand === undefined ? !this._expanded[row.id] : expand;
 
 				// update the expando display
-				put(target, '.ui-icon-triangle-1-' + (expanded ? 'se' : 'e') +
-					'!ui-icon-triangle-1-' + (expanded ? 'e' : 'se'));
-				put(row.element, (expanded ? '.' : '!') + 'dgrid-row-expanded');
+				domClass.replace(target, 'ui-icon-triangle-1-' + (expanded ? 'se' : 'e'),
+					'ui-icon-triangle-1-' + (expanded ? 'e' : 'se'));
+				domClass.toggle(row.element, 'dgrid-row-expanded', expanded);
 
 				var rowElement = row.element,
 					container = rowElement.connected,
@@ -18214,11 +17769,11 @@ define([
 					// if the children have not been created, create a container, a preload node and do the
 					// query for the children
 					container = options.container = rowElement.connected =
-						put(rowElement, '+div.dgrid-tree-container');
+						domConstruct.create('div', { className: 'dgrid-tree-container' }, rowElement, 'after');
 					var query = function (options) {
 						var childCollection = grid._renderedCollection.getChildren(row.data),
 							results;
-						if (grid.sort) {
+						if (grid.sort && grid.sort.length > 0) {
 							childCollection = childCollection.sort(grid.sort);
 						}
 						if (childCollection.track && grid.shouldTrackCollection) {
@@ -18256,7 +17811,7 @@ define([
 						// If not using OnDemandList, we don't need preload nodes,
 						// but we still need a beforeNode to pass to renderArray,
 						// so create a temporary one
-						var firstChild = put(container, 'div');
+						var firstChild = domConstruct.create('div', null, container);
 						promise = this._trackError(function () {
 							return grid.renderQueryResults(
 								query(options),
@@ -18265,7 +17820,7 @@ define([
 									'level' in query ? { queryLevel: query.level } : null
 								)
 							).then(function (rows) {
-								put(firstChild, '!');
+								domConstruct.destroy(firstChild);
 								return rows;
 							});
 						});
@@ -18298,12 +17853,12 @@ define([
 					else {
 						// if it will be hidden we need to be able to give a full height
 						// without animating it, so it has the right starting point to animate to zero
-						put(container, '.dgrid-tree-resetting');
+						domClass.add(container, 'dgrid-tree-resetting');
 						containerStyle.height = container.scrollHeight + 'px';
 					}
 					// Perform a transition for the expand or collapse.
 					setTimeout(function () {
-						put(container, '!dgrid-tree-resetting');
+						domClass.remove(container, 'dgrid-tree-resetting');
 						containerStyle.height =
 							expanded ? (scrollHeight ? scrollHeight + 'px' : 'auto') : '0px';
 					}, 0);
@@ -18338,7 +17893,7 @@ define([
 			return columnArray;
 		},
 
-		insertRow: function () {
+		insertRow: function (object) {
 			var rowElement = this.inherited(arguments);
 
 			// Auto-expand (shouldExpand) considerations
@@ -18347,6 +17902,10 @@ define([
 
 			if (expanded) {
 				this.expand(rowElement, true, true);
+			}
+
+			if (expanded || (!this.collection.mayHaveChildren || this.collection.mayHaveChildren(object))) {
+				domClass.add(rowElement, 'dgrid-row-expandable');
 			}
 
 			return rowElement; // pass return value through
@@ -18377,7 +17936,7 @@ define([
 				}
 
 				if (!preserveDom) {
-					put(connected, '!');
+					domConstruct.destroy(connected);
 				}
 			}
 
@@ -18485,8 +18044,8 @@ define([
 
 				node = originalRenderCell.call(column, object, value, td, options);
 				if (node && node.nodeType) {
-					put(td, expando);
-					put(td, node);
+					td.appendChild(expando);
+					td.appendChild(node);
 				}
 				else {
 					td.insertBefore(expando, td.firstChild);
@@ -18509,15 +18068,15 @@ define([
 			//		The item that this expando pertains to
 
 			var dir = this.grid.isRTL ? 'right' : 'left',
-				cls = '.dgrid-expando-icon',
-				node;
+				cls = 'dgrid-expando-icon';
 			if (hasChildren) {
-				cls += '.ui-icon.ui-icon-triangle-1-' + (expanded ? 'se' : 'e');
+				cls += ' ui-icon ui-icon-triangle-1-' + (expanded ? 'se' : 'e');
 			}
-			node = put('div' + cls + '[style=margin-' + dir + ': ' +
-				(level * this.grid.treeIndentWidth) + 'px; float: ' + dir + ']');
-			node.innerHTML = '&nbsp;';
-			return node;
+			return domConstruct.create('div', {
+				className: cls,
+				innerHTML: '&nbsp;',
+				style: 'margin-' + dir + ': ' + (level * this.grid.treeIndentWidth) + 'px; float: ' + dir + ';'
+			});
 		},
 
 		_onTreeTransitionEnd: function (event) {
@@ -18535,10 +18094,10 @@ define([
 				// For browsers with CSS transition support, setting the height to
 				// auto or "" will cause an animation to zero height for some
 				// reason, so temporarily set the transition to be zero duration
-				put(this, '.dgrid-tree-resetting');
+				domClass.add(this, 'dgrid-tree-resetting');
 				setTimeout(function () {
 					// Turn off the zero duration transition after we have let it render
-					put(container, '!dgrid-tree-resetting');
+					domClass.remove(container, 'dgrid-tree-resetting');
 				}, 0);
 			}
 			// Now set the height to auto
@@ -18547,9 +18106,8 @@ define([
 	});
 });
 
-},
-'dgrid/util/has-css3':function(){
-define([
+
+define("dgrid/util/has-css3", [
 	'dojo/has'
 ], function (has) {
 	// This module defines feature tests for CSS3 features such as transitions.
@@ -18613,19 +18171,18 @@ define([
 	return has;
 });
 
-},
-'dgrid/Selection':function(){
-define([
+
+define("dgrid/Selection", [
 	'dojo/_base/declare',
+	'dojo/dom-class',
 	'dojo/on',
 	'dojo/has',
 	'dojo/aspect',
 	'./List',
 	'dojo/has!touch?./util/touch',
-	'put-selector/put',
 	'dojo/query',
 	'dojo/_base/sniff'
-], function (declare, on, has, aspect, List, touchUtil, put) {
+], function (declare, domClass, on, has, aspect, List, touchUtil) {
 
 	has.add('dom-comparedocumentposition', function (global, doc, element) {
 		return !!element.compareDocumentPosition;
@@ -19160,11 +18717,11 @@ define([
 				if (element) {
 					// add or remove classes as appropriate
 					if (value) {
-						put(element, '.dgrid-selected' +
-							(this.addUiClasses ? '.ui-state-active' : ''));
+						domClass.add(element, 'dgrid-selected' +
+							(this.addUiClasses ? ' ui-state-active' : ''));
 					}
 					else {
-						put(element, '!dgrid-selected!ui-state-active');
+						domClass.remove(element, 'dgrid-selected ui-state-active');
 					}
 				}
 				if (value !== previousValue && element) {
@@ -19318,15 +18875,15 @@ define([
 	});
 });
 
-},
-'dgrid/Selector':function(){
-define([
+
+define("dgrid/Selector", [
 	'dojo/_base/declare',
 	'dojo/_base/lang',
 	'dojo/_base/sniff',
-	'./Selection',
-	'put-selector/put'
-], function (declare, lang, has, Selection, put) {
+	'dojo/dom-construct',
+	'dojo/dom-class',
+	'./Selection'
+], function (declare, lang, has, domConstruct, domClass, Selection) {
 
 	return declare(Selection, {
 		// summary:
@@ -19355,19 +18912,16 @@ define([
 		},
 
 		_defaultRenderSelectorInput: function (column, selected, cell, object) {
-			var parent = cell.parentNode;
 			var grid = column.grid;
 
-			// Must set the class name on the outer cell in IE for keystrokes to be intercepted
-			put(parent && parent.contents ? parent : cell, '.dgrid-selector');
-			var input = cell.input || (cell.input = put(cell, 'input[type=' + column.selector + ']', {
-				tabIndex: isNaN(column.tabIndex) ? -1 : column.tabIndex,
+			domClass.add(cell, 'dgrid-selector');
+			return cell.input || (cell.input = domConstruct.create('input', {
+				'aria-checked': selected,
+				checked: selected,
 				disabled: !grid.allowSelect(grid.row(object)),
-				checked: selected
-			}));
-			input.setAttribute('aria-checked', selected);
-
-			return input;
+				tabIndex: isNaN(column.tabIndex) ? -1 : column.tabIndex,
+				type: column.selector
+			}, cell));
 		},
 
 		_configureSelectorColumn: function (column) {
@@ -19539,27 +19093,25 @@ define([
 		}
 	});
 });
-},
-'dgrid/OnDemandGrid':function(){
-define([
+
+define("dgrid/OnDemandGrid", [
 	'dojo/_base/declare',
 	'./Grid',
 	'./OnDemandList'
 ], function (declare, Grid, OnDemandList) {
 	return declare([ Grid, OnDemandList ], {});
 });
-},
-'dgrid/OnDemandList':function(){
-define([
+
+define("dgrid/OnDemandList", [
 	'./List',
 	'./_StoreMixin',
 	'dojo/_base/declare',
 	'dojo/_base/lang',
+	'dojo/dom-construct',
 	'dojo/on',
 	'dojo/when',
-	'./util/misc',
-	'put-selector/put'
-], function (List, _StoreMixin, declare, lang, on, when, miscUtil, put) {
+	'./util/misc'
+], function (List, _StoreMixin, declare, lang, domConstruct, on, when, miscUtil) {
 
 	return declare([ List, _StoreMixin ], {
 		// summary:
@@ -19620,7 +19172,10 @@ define([
 		//		specific calls to refresh.
 		keepScrollPosition: false,
 
-		rowHeight: 22,
+		// rowHeight: Number
+		//		Average row height, computed in renderQuery during the rendering of
+		//		the first range of data.
+		rowHeight: 0,
 
 		postCreate: function () {
 			this.inherited(arguments);
@@ -19631,6 +19186,13 @@ define([
 					self._processScroll(event);
 				}, null, this.pagingDelay)
 			);
+		},
+
+		destroy: function () {
+			this.inherited(arguments);
+			if (this._refreshTimeout) {
+				clearTimeout(this._refreshTimeout);
+			}
 		},
 
 		renderQuery: function (query, options) {
@@ -19655,15 +19217,18 @@ define([
 
 			// Initial query; set up top and bottom preload nodes
 			var topPreload = {
-				node: put(container, 'div.dgrid-preload', {
-					rowIndex: 0
-				}),
+				node: domConstruct.create('div', {
+					className: 'dgrid-preload',
+					style: { height: '0' }
+				}, container),
 				count: 0,
 				query: query,
 				next: preload
 			};
-			topPreload.node.style.height = '0';
-			preload.node = preloadNode = put(container, 'div.dgrid-preload');
+			topPreload.node.rowIndex = 0;
+			preload.node = preloadNode = domConstruct.create('div', {
+				className: 'dgrid-preload'
+			}, container);
 			preload.previous = topPreload;
 
 			// this preload node is used to represent the area of the grid that hasn't been
@@ -19691,8 +19256,12 @@ define([
 				this.preload = preload;
 			}
 
-			var loadingNode = put(preloadNode, '-div.dgrid-loading'),
-				innerNode = put(loadingNode, 'div.dgrid-below');
+			var loadingNode = domConstruct.create('div', {
+					className: 'dgrid-loading'
+				}, preloadNode, 'before'),
+				innerNode = domConstruct.create('div', {
+					className: 'dgrid-below'
+				}, loadingNode);
 			innerNode.innerHTML = this.loadingMessage;
 
 			// Establish query options, mixing in our own.
@@ -19705,7 +19274,7 @@ define([
 
 				// Render the result set
 				return self.renderQueryResults(results, preloadNode, options).then(function (trs) {
-					return when(results.totalLength, function (total) {
+					return results.totalLength.then(function (total) {
 						var trCount = trs.length,
 							parentNode = preloadNode.parentNode,
 							noDataNode = self.noDataNode;
@@ -19715,19 +19284,21 @@ define([
 							self._rows.max = trCount === total ? Infinity : trCount - 1;
 						}
 
-						put(loadingNode, '!');
+						domConstruct.destroy(loadingNode);
 						if (!('queryLevel' in options)) {
 							self._total = total;
 						}
 						// now we need to adjust the height and total count based on the first result set
-						if (total === 0) {
+						if (total === 0 && parentNode) {
 							if (noDataNode) {
-								put(noDataNode, '!');
+								domConstruct.destroy(noDataNode);
 								delete self.noDataNode;
 							}
-							self.noDataNode = noDataNode = put('div.dgrid-no-data');
+							self.noDataNode = noDataNode = domConstruct.create('div', {
+								className: 'dgrid-no-data',
+								innerHTML: self.noDataMessage
+							});
 							parentNode.insertBefore(noDataNode, self._getFirstRowSibling(parentNode));
-							noDataNode.innerHTML = self.noDataMessage;
 						}
 						var height = 0;
 						for (var i = 0; i < trCount; i++) {
@@ -19762,7 +19333,7 @@ define([
 					});
 				}).otherwise(function (err) {
 					// remove the loadingNode and re-throw
-					put(loadingNode, '!');
+					domConstruct.destroy(loadingNode);
 					throw err;
 				});
 			});
@@ -19803,12 +19374,13 @@ define([
 				}).then(function () {
 					// Emit on a separate turn to enable event to be used consistently for
 					// initial render, regardless of whether the backing store is async
-					setTimeout(function () {
+					self._refreshTimeout = setTimeout(function () {
 						on.emit(self.domNode, 'dgrid-refresh-complete', {
 							bubbles: true,
 							cancelable: false,
 							grid: self
 						});
+						self._refreshTimeout = null;
 					}, 0);
 				});
 			}
@@ -19829,12 +19401,12 @@ define([
 			var collection = this._renderedCollection;
 
 			if (collection && collection.releaseRange) {
-				when(rows, function (resolvedRows) {
+				rows.then(function (resolvedRows) {
 					if (resolvedRows[0] && !resolvedRows[0].parentNode.tagName) {
 						// Release this range, since it was never actually rendered;
 						// need to wait until totalLength promise resolves, since
 						// Trackable only adds the range then to begin with
-						when(results.totalLength, function () {
+						results.totalLength.then(function () {
 							collection.releaseRange(resolvedRows[0].rowIndex,
 								resolvedRows[resolvedRows.length - 1].rowIndex + 1);
 						});
@@ -19877,6 +19449,11 @@ define([
 			// summary:
 			//		Checks to make sure that everything in the viewable area has been
 			//		downloaded, and triggering a request for the necessary data when needed.
+
+			if (!this.rowHeight) {
+				return;
+			}
+
 			var grid = this,
 				scrollNode = grid.bodyNode,
 				// grab current visible top from event if provided, otherwise from node
@@ -19972,10 +19549,13 @@ define([
 					}
 					// we remove the elements after expanding the preload node so that
 					// the contraction doesn't alter the scroll position
-					var trashBin = put('div', toDelete);
+					var trashBin = document.createElement('div');
+					for (var i = toDelete.length; i--;) {
+						trashBin.appendChild(toDelete[i]);
+					}
 					setTimeout(function () {
 						// we can defer the destruction until later
-						put(trashBin, '!');
+						domConstruct.destroy(trashBin);
 					}, 1);
 				}
 			}
@@ -20114,10 +19694,14 @@ define([
 					}
 
 					// create a loading node as a placeholder while the data is loaded
-					var loadingNode = put(beforeNode,
-						'-div.dgrid-loading[style=height:' + count * grid.rowHeight + 'px]');
-					var innerNode = put(loadingNode, 'div.dgrid-' + (below ? 'below' : 'above'));
-					innerNode.innerHTML = grid.loadingMessage;
+					var loadingNode = domConstruct.create('div', {
+						className: 'dgrid-loading',
+						style: { height: count * grid.rowHeight + 'px' }
+					}, beforeNode, 'before');
+					domConstruct.create('div', {
+						className: 'dgrid-' + (below ? 'below' : 'above'),
+						innerHTML: grid.loadingMessage
+					}, loadingNode);
 					loadingNode.count = count;
 
 					// Query now to fill in these rows.
@@ -20149,7 +19733,7 @@ define([
 
 								// can remove the loading node now
 								beforeNode = loadingNode.nextSibling;
-								put(loadingNode, '!');
+								domConstruct.destroy(loadingNode);
 								// beforeNode may have been removed if the query results loading node was removed
 								// as a distant node before rendering
 								if (keepScrollTo && beforeNode && beforeNode.offsetWidth) {
@@ -20167,7 +19751,7 @@ define([
 									});
 								}
 
-								when(rangeResults.totalLength, function (total) {
+								rangeResults.totalLength.then(function (total) {
 									if (!('queryLevel' in options)) {
 										grid._total = total;
 										if (grid._rows && grid._rows.max >= grid._total - 1) {
@@ -20190,7 +19774,7 @@ define([
 								grid._processScroll();
 								return rows;
 							}, function (e) {
-								put(loadingNode, '!');
+								domConstruct.destroy(loadingNode);
 								throw e;
 							});
 						})(loadingNode, below, keepScrollTo);
@@ -20208,17 +19792,17 @@ define([
 
 });
 
-},
-'dgrid/_StoreMixin':function(){
-define([
+
+define("dgrid/_StoreMixin", [
 	'dojo/_base/declare',
 	'dojo/_base/lang',
 	'dojo/Deferred',
 	'dojo/aspect',
+	'dojo/dom-construct',
+	'dojo/has',
 	'dojo/on',
-	'dojo/when',
-	'put-selector/put'
-], function (declare, lang, Deferred, aspect, on, when, put) {
+	'dojo/when'
+], function (declare, lang, Deferred, aspect, domConstruct, has, on, when) {
 	// This module isolates the base logic required by store-aware list/grid
 	// components, e.g. OnDemandList/Grid and the Pagination extension.
 
@@ -20353,7 +19937,11 @@ define([
 			}
 
 			this.collection = collection;
-			this.refresh();
+
+			// Avoid unnecessary refresh if instance hasn't started yet (startup will refresh)
+			if (this._started) {
+				this.refresh();
+			}
 		},
 
 		_setStore: function () {
@@ -20421,8 +20009,10 @@ define([
 			var result = this.inherited(arguments);
 
 			if (!this.collection) {
-				this.noDataNode = put(this.contentNode, 'div.dgrid-no-data');
-				this.noDataNode.innerHTML = this.noDataMessage;
+				this.noDataNode = domConstruct.create('div', {
+					className: 'dgrid-no-data',
+					innerHTML: this.noDataMessage
+				}, this.contentNode);
 			}
 
 			return result;
@@ -20433,7 +20023,7 @@ define([
 
 			if (!this.collection) {
 				if (rows.length && this.noDataNode) {
-					put(this.noDataNode, '!');
+					domConstruct.destroy(this.noDataNode);
 				}
 			}
 			return rows;
@@ -20465,7 +20055,7 @@ define([
 			// Run after inherited logic to prevent confusion due to noDataNode
 			// no longer being present as a sibling.
 			if (this.noDataNode) {
-				put(this.noDataNode, '!');
+				domConstruct.destroy(this.noDataNode);
 				this.noDataNode = null;
 			}
 
@@ -20489,7 +20079,8 @@ define([
 			var self = this,
 				store = this.collection,
 				dirty = this.dirty,
-				dfd = new Deferred(), promise = dfd.promise,
+				dfd = new Deferred(),
+				results = {},
 				getFunc = function (id) {
 					// returns a function to pass as a step in the promise chain,
 					// with the id variable closured
@@ -20533,13 +20124,20 @@ define([
 
 					updating[id] = true;
 					// Put it in the store, returning the result/promise
-					return when(store.put(object), function () {
+					return store.put(object).then(function (result) {
 						// Clear the item now that it's been confirmed updated
 						delete dirty[id];
 						delete updating[id];
+						results[id] = result;
+						return results;
 					});
 				};
 			}
+
+			var promise = dfd.then(function () {
+				// Ensure empty object is returned even if nothing was dirty, for consistency
+				return results;
+			});
 
 			// For every dirty item, grab the ID
 			for (var id in dirty) {
@@ -20606,8 +20204,10 @@ define([
 					(this.up(row).element === rowElement) &&
 					(this.down(row).element === rowElement)) {
 				// ...we are empty, so show the no data message.
-				this.noDataNode = put(this.contentNode, 'div.dgrid-no-data');
-				this.noDataNode.innerHTML = this.noDataMessage;
+				this.noDataNode = domConstruct.create('div', {
+					className: 'dgrid-no-data',
+					innerHTML: this.noDataMessage
+				}, this.contentNode);
 			}
 
 			var rows = (options && options.rows) || this._rows;
@@ -20625,7 +20225,17 @@ define([
 			options = lang.mixin({ rows: this._rows }, options);
 			var self = this;
 
-			return when(results).then(function (resolvedResults) {
+			if (! 1 ) {
+				// Check for null/undefined totalResults to help diagnose faulty services/stores
+				results.totalLength.then(function (total) {
+					if (total == null) {
+						console.warn('Store reported null or undefined totalLength. ' +
+							'Make sure your store (and service, if applicable) are reporting total correctly!');
+					}
+				});
+			}
+
+			return results.then(function (resolvedResults) {
 				var resolvedRows = self.renderArray(resolvedResults, beforeNode, options);
 				delete self._lastCollection; // used only for non-store List/Grid
 				return resolvedRows;
@@ -20767,9 +20377,8 @@ define([
 	});
 });
 
-},
-'dstore/Tree':function(){
-define([
+
+define("dstore/Tree", [
 	'dojo/_base/declare'
 	/*=====, 'dstore/Store'=====*/
 ], function (declare /*=====, Store=====*/) {
@@ -20812,9 +20421,8 @@ define([
 	});
 });
 
-},
-'dstore/Trackable':function(){
-define([
+
+define("dstore/Trackable", [
 	'dojo/_base/lang',
 	'dojo/_base/declare',
 	'dojo/aspect',
@@ -21223,9 +20831,8 @@ define([
 	return Trackable;
 });
 
-},
-'dojo/promise/all':function(){
-define([
+
+define("dojo/promise/all", [
 	"../_base/array",
 	"../Deferred",
 	"../when"
@@ -21302,9 +20909,8 @@ define([
 	};
 });
 
-},
-'dstore/QueryResults':function(){
-define(['dojo/_base/lang', 'dojo/when'], function (lang, when) {
+
+define("dstore/QueryResults", ['dojo/_base/lang', 'dojo/when'], function (lang, when) {
 	function forEach(callback, instance) {
 		return when(this, function(data) {
 			for (var i = 0, l = data.length; i < l; i++){
@@ -21341,9 +20947,8 @@ define(['dojo/_base/lang', 'dojo/when'], function (lang, when) {
 	};
 });
 
-},
-'dstore/Memory':function(){
-define([
+
+define("dstore/Memory", [
 	'dojo/_base/declare',
 	'dojo/_base/lang',
 	'dojo/_base/array',
@@ -21582,9 +21187,8 @@ define([
 	});
 });
 
-},
-'dstore/Store':function(){
-define([
+
+define("dstore/Store", [
 	'dojo/_base/lang',
 	'dojo/_base/array',
 	'dojo/aspect',
@@ -22078,9 +21682,8 @@ define([
 	};
 ====*/
 
-},
-'dstore/QueryMethod':function(){
-define([], function () {
+
+define("dstore/QueryMethod", [], function () {
 	/*=====
 	var __QueryMethodArgs = {
 		// type: String
@@ -22149,9 +21752,8 @@ define([], function () {
 	};
 });
 
-},
-'dstore/Filter':function(){
-define(['dojo/_base/declare'], function (declare) {
+
+define("dstore/Filter", ['dojo/_base/declare'], function (declare) {
 	// a Filter builder
 	function filterCreator(type) {
 		// constructs a new filter based on type, used to create each method
@@ -22210,9 +21812,8 @@ define(['dojo/_base/declare'], function (declare) {
 	Filter.filterCreator = filterCreator;
 	return Filter;
 });
-},
-'dstore/Promised':function(){
-define([
+
+define("dstore/Promised", [
 	'dojo/_base/declare',
 	'dojo/Deferred',
 	'./QueryResults',
@@ -22249,9 +21850,8 @@ define([
 	});
 });
 
-},
-'dstore/SimpleQuery':function(){
-define([
+
+define("dstore/SimpleQuery", [
 	'dojo/_base/declare',
 	'dojo/_base/array'
 ], function (declare, arrayUtil) {
@@ -22397,9 +21997,8 @@ define([
 	});
 });
 
-},
-'lib/Editor':function(){
-define([
+
+define("lib/Editor", [
 	'dojo/_base/declare',
 	'dojo/_base/lang',
 	'dojo/Deferred',
@@ -23102,13 +22701,6 @@ define([
 	});
 });
 
-},
-'url:dgrid/css/dgrid.css':{"cssText":".dgrid{position:relative;overflow:hidden;border:1px solid #ddd;height:30em;display:block;}.dgrid-header{background-color:#eee;}.dgrid-header-row{position:absolute;right:17px;left:0;}.dgrid-header-scroll{position:absolute;top:0;right:0;}.dgrid-footer{position:absolute;bottom:0;width:100%;}.dgrid-header-hidden{font-size:0;height:0 !important;border-top:none !important;border-bottom:none !important;margin-top:0 !important;margin-bottom:0 !important;padding-top:0 !important;padding-bottom:0 !important;}.dgrid-footer-hidden{display:none;}.dgrid-sortable{cursor:pointer;}.dgrid-header, .dgrid-header-row, .dgrid-footer{overflow:hidden;background-color:#eee;}.dgrid-row-table{border-collapse:collapse;border:none;table-layout:fixed;empty-cells:show;width:100%;height:100%;}.dgrid-cell{padding:3px;text-align:left;overflow:hidden;vertical-align:top;border:1px solid #ddd;border-top-style:none;box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;-webkit-box-sizing:border-box;}.dgrid-content{position:relative;height:99%;}.dgrid-scroller{overflow-x:auto;overflow-y:scroll;position:absolute;top:0px;margin-top:25px;bottom:0px;width:100%;}.dgrid-preload{font-size:0;line-height:0;}.dgrid-loading{position:relative;height:100%;}.dgrid-above{position:absolute;bottom:0;}.ui-icon{width:16px;height:16px;background-image:url(\"data:image/png;base64,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\");}.ui-icon-triangle-1-e{background-position:-32px -16px;}.ui-icon-triangle-1-se{background-position:-48px -16px;}.dgrid-expando-icon{width:16px;height:16px;}.dgrid-tree-container{-webkit-transition-duration:0.3s;-moz-transition-duration:0.3s;-ms-transition-duration:0.3s;-o-transition-duration:0.3s;transition-duration:0.3s;overflow:hidden;}.dgrid-tree-container.dgrid-tree-resetting{-webkit-transition-duration:0;-moz-transition-duration:0;-ms-transition-duration:0;-o-transition-duration:0;transition-duration:0;}.dgrid-sort-arrow{background-position:-64px -16px;display:block;float:right;margin:0 4px 0 5px;height:12px;}.dgrid-sort-up .dgrid-sort-arrow{background-position:0px -16px;}.dgrid-selected{background-color:#bfd6eb;}.dgrid-input{width:99%;}html.has-mozilla .dgrid-focus{outline-offset:-1px;}.dgrid-scrollbar-measure{width:100px;height:100px;overflow:scroll;position:absolute;top:-9999px;}.dgrid-autoheight{height:auto;}.dgrid-autoheight .dgrid-scroller{position:relative;overflow-y:hidden;}.dgrid-autoheight .dgrid-header-scroll{display:none;}.dgrid-autoheight .dgrid-header{right:0;}#dgrid-css-dgrid-loaded{display:none;}","xCss":"{/16background-image:url(\"data:image/png;base64,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\");}"}}});
-(function(){
-	// must use this.require to make this work in node.js
-	var require = this.require;
-	// consume the cached dojo layer
-	require({cache:{}});
-	!require.async && require(["dojo"]);
-	require.boot && require.apply(null, require.boot);
-})();
+
+define("../super-grid/dgrid-raw", function(){});
+

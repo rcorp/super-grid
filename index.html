@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="../dgrid/css/dgrid.css">
+	<link rel="stylesheet" href="../dgrid/css/skins/claro.css">
+	<title>Super Grid! Demo</title>
+	<script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+	<script src="bower_components/handlebars/handlebars.js"> </script>
+
+	<link rel="import" href="../paper-input/paper-input.html">
+	<link rel="import" href="../google-map/google-map.html">
+	<link rel="import" href="../paper-button/paper-button.html">
+	<link rel="import" href="./super-grid.html">
+	<!-- <link rel="import" href="../super-code/super-code.html" /> -->
+</head>
+
+<body>
+
+	<super-grid tree="true" selection="true">
+		<super-column field="name" label="Name"></super-column>
+
+		<super-column field="age" label="Age">
+			<template data-editor="">
+				<paper-input> </paper-input>
+			</template>
+		</super-column>
+
+		<super-column field="TemplatedAge" label="Age">
+			<template>
+				<h1> {{name}} is {{age}} years old! </h1>
+			</template>
+		</super-column>
+
+		<super-column>
+			<template>
+				<google-map latitude="{{latitude}}" longitude="{{longitude}}"> </google-map>
+			</template>
+		</super-column>
+	</super-grid>
+
+	<super-grid tree="true" selection="true">
+		<super-column field="name" label="Name"></super-column>
+
+		<super-column field="age" label="Age">
+			<template data-editor="">
+				<paper-input> </paper-input>
+			</template>
+		</super-column>
+
+		<super-column field="TemplatedAge" label="Age">
+			<template>
+				<h1> {{name}} is {{age}} years old! </h1>
+			</template>
+		</super-column>
+
+		<super-column>
+			<template>
+				<google-map latitude="{{latitude}}" longitude="{{longitude}}"> </google-map>
+			</template>
+		</super-column>
+	</super-grid>
+
+
+	<super-grid selection="true">
+		<super-column field="checkbox" selector="checkbox"></super-column>
+		<super-column field="text">
+			<template>
+				<h1>{{name}}</h1>
+			</template>
+		</super-column>
+		<super-column field="image">
+			<template>
+				<img src="download-icon.png">
+			</template>
+		</super-column>
+	</super-grid>
+
+
+	<super-grid>
+		<super-column field="Tex">
+			<template>
+				<h3> {{name}}</h3>
+			</template>
+		</super-column>
+		<super-column field="Button">
+			<template>
+				<a href="/html/index.htm" target="_blank" download="file name">
+				<paper-button>PREVIEW
+				</paper-button></a>
+			</template>
+		</super-column>
+	</super-grid>
+
+	<super-grid selection="true">
+		<super-column field="C">
+			<template>
+				<img src="download-icon.png">
+			</template>
+		</super-column>
+		<super-column field="B">
+			<template>
+				<h1>{{title}}</h1>
+			</template>
+		</super-column>
+		<super-column field="B">
+			<template>
+				<h1>{{name}}</h1>
+			</template>
+		</super-column>
+		<super-column field="C">
+			<template>
+				<img src="download-icon.png">
+			</template>
+		</super-column>
+
+	</super-grid>
+
+	<super-grid selection="true" tree="true">
+		<super-column renderExpando="true" field="id"></super-column>
+		<super-column field="name">
+
+		</super-column>
+	</super-grid>
+<!-- google drive templates -->
+	<super-grid selection="true" tree="true">
+		<super-column field="checkbox" selector="checkbox"></super-column>
+		<super-column renderExpando="true" field="id"></super-column>
+		<super-column field="image">
+			<template>
+				<img src="download-icon.png">
+			</template>
+		</super-column>
+		<super-column field="Tex">
+			<template>
+				<h3> {{name}}</h3>
+			</template>
+		</super-column>
+	</super-grid>
+
+</body>
+
+</html>
