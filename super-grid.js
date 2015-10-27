@@ -31,6 +31,7 @@ require([
 		mixins.push(OnDemandGrid);
 		mixins.push(Selector);
 		mixins.push(Editor);
+		mixins.push(Tree);
 
 
 		//Create a new instance of dgrid. For later purposes we are storing
@@ -123,6 +124,24 @@ require([
 			createStore.call(this, []);
 			createGrid.call(this);
 		},
+		allowSelect: function(row){
+			this.dgrid.allowSelect(row);
+		},
+		selectAll: function(){
+			this.dgrid.selectAll();
+		},
+		select: function(row ,toRow){
+			this.dgrid.select(row,toRow);
+		},
+		deselect: function(row,toRow){
+			this.dgrid.deselect(row,toRow);
+		},
+		clearSelection: function(){
+			this.dgrid.clearSelection();
+		},
+		isSelected: function(row){
+			this.dgrid.isSelected(row);
+		},
 		properties: {
 			tree: {
 				type: "boolean",
@@ -135,7 +154,20 @@ require([
 				type: "String",
 				value: false
 			},
-
+			selectionMode: {
+				type: "String"
+			},
+			allowTextSelection: {
+				type: "String",
+			},
+			deselectOnRefresh: {
+				type: "boolean",
+				value: true
+			},
+			allowSelectAll: {
+				type: "boolean",
+				value: false
+			},
 			value: {
 				type: "Array",
 				value: [],
