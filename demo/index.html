@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <title>super-grid demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="../super-grid.html">
+    <link rel="import" href="../../iron-list/iron-list.html">
+    <link rel="import" href="../../paper-input/paper-input.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+    <style>
+
+    </style>
+
+  </head>
+  <body>
+
+    <div class="vertical-section-container centered">
+      <h3>Basic super-grid Demo</h3>
+      <demo-snippet>
+        <template is="dom-bind">
+          <template id="template1">
+            <div style="display: flex; flex-direction: row">
+              <div style="flex-grow: 1"> {{item.name}} </div> | 
+              <div style="flex-grow: 1"> {{item.average}} </div> | 
+              <div style="flex-grow: 1"> {{item.sr}} </div> | 
+            </div>
+
+          </template>
+
+
+          <template id="template2">
+            <div style="display: flex; flex-direction: row">
+              <div style="flex-grow: 1"> {{index}} </div>
+              <div style="flex-grow: 1"> {{item.name}} </div>
+            </div>
+
+          </template>
+
+          <iron-list id="list" style="display: flex; height: 200px">
+          </iron-list>
+          <super-grid></super-grid>
+          <script>
+
+
+
+
+          window.theItems = [{
+            name: 'Sachin',
+            average: 50,
+            sr: 80
+          }, {
+            name: 'Virender',
+            average: 35,
+            sr: 93
+          }, {
+            name: 'Dravid',
+            average: 45,
+            sr: 60
+          }]
+          // Polymer.dom(document.getElementById('list')).appendChild(template1);
+          // document.getElementById('list').items = theItems
+          </script>
+        </template>
+      </demo-snippet>
+    </div>
+
+
+  </body>
+</html>

@@ -1,10 +1,37 @@
 <link rel="import" href="../polymer/polymer.html">
 
-<script type="text/javascript" src="./dgrid.js"></script>
-<script type="text/javascript" src="./super-grid.js"></script>
+<!--
+`super-grid`
+
+
+@demo demo/index.html 
+-->
 
 <dom-module id="super-grid">
-	<template>
-		<content> </content>
-	</template>
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]</h2>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'super-grid',
+
+      properties: {
+        prop1: {
+          type: String,
+          value: 'super-grid',
+        },
+      },
+      ready: function () {
+        
+      }
+
+    });
+  </script>
 </dom-module>
